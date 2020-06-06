@@ -1,0 +1,19 @@
+﻿<Window x:Class="ListOfCompanyEmployees.AddDepartmentForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ListOfCompanyEmployees"
+        mc:Ignorable="d"
+        Title="Добавьте (измените) департамент!!!" Height="400" Width="600">
+    <Grid>
+        <Label Content="Введите департамент" FontSize="25" Margin="71,41,71,284"
+               Height="45" Width="450" HorizontalContentAlignment="Center"/>
+        <TextBox x:Name="departmentNameTextBox" Height="30" Width="400" Margin="96,112,96,228"/>
+        <Button x:Name="btnOK" Content="_OK" 
+                FontSize="18" Width="80" Height="30" Margin="255,177,257,163" 
+                Click="OnSaveDepartment" 
+                IsDefault="True" RenderTransformOrigin="0.488,-0.067" />
+
+    </Grid>
+</Window>

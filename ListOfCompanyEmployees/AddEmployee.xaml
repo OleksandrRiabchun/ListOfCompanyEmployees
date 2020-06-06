@@ -1,0 +1,27 @@
+﻿<Window x:Class="ListOfCompanyEmployees.AddChangeEmployee"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ListOfCompanyEmployees"
+        mc:Ignorable="d"
+        Title="Добавьте (имените) сотрудника!!!" Height="650" Width="900">
+    <Grid>
+        <Label Content="Введите данные сотрудника" Height="70" FontSize="42" 
+               HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Label Content="Имя" Height="35" Width="100" HorizontalAlignment="Center" RenderTransformOrigin="0.395,-0.157" 
+               Margin="318,70,322,365" FontSize="15" HorizontalContentAlignment="Center"/>
+        <Label Content="Возраст" Height="35" Width="100" FontSize="15" HorizontalContentAlignment="Center" 
+               RenderTransformOrigin="0.455,-0.929" Margin="319,140,323,295"/>
+        <Label Content="Департамент" Height="35" Width="100" FontSize="15" HorizontalContentAlignment="Center"/>
+        <Label Content="Зарплата" Height="35" Width="100" FontSize="15" HorizontalContentAlignment="Center" Margin="371,360,371,174"/>
+        <TextBox x:Name="employeeName" Height="30" Width="350" Margin="196,105,196,335"/>
+        <TextBox x:Name="employeeAge" Height="30" Width="350" Margin="196,180,196,260"/>
+        <TextBox x:Name="employeeSalary" Height="30" Width="350" Margin="246,400,246,140"/>
+        <ComboBox x:Name="employeeDep" Height="30" Width="350" Margin="246,308,246,232">
+        </ComboBox>
+        <Button Content="_OK" Height="30" Width="50"
+         Click="Button_Click" RenderTransformOrigin="0.55,1.488" Margin="350,415,342,25"/>
+
+    </Grid>
+</Window>

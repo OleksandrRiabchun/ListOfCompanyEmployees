@@ -18,14 +18,7 @@ namespace ListOfCompanyEmployees
 
         private void AddNewEmployee(object sender, RoutedEventArgs e)
         {
-            var nextId = _employees.Count + 1;
-            //var selectedDepartment = lbDepartmant.SelectedItem as Department;
-            //if (selectedDepartment is null)
-            //{ 
-            //    MessageBox.Show("Выберите департамент"); 
-            //    return; 
-            //}
-
+            var nextId = _employees.Count + 1; 
             var newEmployee = new Employee(); 
             AddChangeEmployee addEmployee = new AddChangeEmployee(newEmployee, _departments);
             addEmployee.Show();
@@ -89,6 +82,6 @@ namespace ListOfCompanyEmployees
             changeDepartment.Show();
             changeDepartment.Closed += (s, ea) => _departments.RemoveAt(selectedIndex);
             changeDepartment.Closed += (s, ea) => _departments.Add(selectDepartment);
-        }
+        } 
     }
 }

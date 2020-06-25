@@ -6,81 +6,49 @@
         Width="800"
         Title="Ресурсы"
         Background="{DynamicResource Brush}">
-    <Window.Resources>
-        <!--<sys:String x:Key="ComboBoxTitle">Список:</sys:String>-->
-        <x:Array x:Key="ComboBoxItems" Type="sys:String">
-            <sys:String>Элемент #1</sys:String>
-            <sys:String>Элемент #2</sys:String>
-            <sys:String>Элемент #3</sys:String>
-        </x:Array>
-    </Window.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        
-        <Expander x:Name="Test1" Grid.Row="0" IsExpanded="False">
-        <StackPanel Margin="10">
-            <Label Content="_Name"/>
-            <TextBox Name="txtName" Text="Test label binding"/>
-            <Label Content="_Mail:" Target="{Binding ElementName=txtMail}" />
-            <TextBox Name="txtMail" />
-            <Button Click="AddNewEmployee" Content="_OK" IsDefault="True"></Button>
-            <Button Click="AddNewEmployee" IsCancel="True">_CANCEL</Button>
-            <StackPanel Margin="10">
-                <CheckBox IsChecked="True" />
-                <CheckBox IsChecked="False" />
-                <CheckBox IsThreeState="True" IsChecked="{x:Null}" />
-            </StackPanel>
+    <Grid Grid.Row="1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-            <StackPanel Margin="10">
-                <Label FontWeight="Bold">Вы знаете С#?</Label>
-                <RadioButton >Да</RadioButton>
-                <RadioButton >Нет</RadioButton>
-                <RadioButton IsChecked="True">Не уверен</RadioButton>
-            </StackPanel>
-
-            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="50">
-                <ItemsControl>
-                    <sys:String>Строка #1</sys:String>
-                    <sys:String>Строка #2</sys:String>
-                    <sys:String>Строка #3</sys:String>
-                    <sys:String>Строка #4</sys:String>
-                    <sys:String>Строка #5</sys:String>
-                </ItemsControl>            </ScrollViewer>
-        </StackPanel>
-    </Expander>
-
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <StackPanel Grid.Column="0">
-                <ListBox Margin="10" Name="lbEmployee" SelectionMode="Single"
+        <StackPanel Grid.Column="0">
+            <ListView Margin="10" Name="lbEmployee" 
                      VerticalAlignment="Top" 
-                     Height="250"></ListBox>
-                <Button Margin="10" Height="25" Width="70" 
+                     Height="250">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="№" DisplayMemberBinding="{Binding Id}"/>
+                        <GridViewColumn Header="Имя" Width="85" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Возраст" Width="85" DisplayMemberBinding="{Binding Age}"/>
+                        <GridViewColumn Header="Департамент" Width="85"  DisplayMemberBinding="{Binding Department}"/>
+                        <GridViewColumn Header="Зарплата" Width="85" DisplayMemberBinding="{Binding Salary}"/>                        
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Button Margin="10" Height="25" Width="70" 
                     VerticalAlignment="Bottom"
                     Click="AddNewEmployee">Добавить</Button>
-                <Button Content="Изменить" Height="25" Width="70" Click="ChangeEmployee"/>
-            </StackPanel>
-            
-            <StackPanel Grid.Column="1">
-                <ListBox Margin="10" Name="lbDepartmant" SelectionMode="Single"
+            <Button Content="Изменить" Height="25" Width="70" Click="ChangeEmployee"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1">
+            <ListView Margin="10" x:Name="lbDepartmant"  
                      VerticalAlignment="Top" 
-                     Height="250"></ListBox>
-                <Button Margin="10" Height="25" Width="70" 
+                     Height="250">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Имя" Width="350" DisplayMemberBinding="{Binding Name}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Button Margin="10" Height="25" Width="70" 
                     VerticalAlignment="Bottom"
-                    Click="AddNewDepartments">Добавить</Button>
-                <Button Content="Изменить" Height="25" Width="70" Click="ChangeDepartment"/>
-                    
-            </StackPanel>
-            
-            
-        </Grid>
+                    Click="AddNewDepartments" Content="Добавить"/>
+            <Button Content="Изменить" Height="25" Width="70" Click="ChangeDepartment"/>
+        </StackPanel>
+
     </Grid>
+
 </Window>

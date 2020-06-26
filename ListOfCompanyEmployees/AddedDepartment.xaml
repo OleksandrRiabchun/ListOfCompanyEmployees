@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:ListOfCompanyEmployees"
         mc:Ignorable="d"
         Title="Добавьте (измените) департамент!!!" Height="400" Width="600">
+     
     <Grid>
         <Label Content="Введите департамент" FontSize="25" Margin="71,41,71,284"
                Height="45" Width="450" HorizontalContentAlignment="Center"/>

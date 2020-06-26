@@ -34,7 +34,7 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1">
-            <ListView Margin="10" x:Name="lbDepartmant"  
+            <ListView Margin="10" x:Name="lbDepartmant" 
                      VerticalAlignment="Top" 
                      Height="250">
                 <ListView.View>

@@ -14,7 +14,7 @@ namespace ListOfCompanyEmployees
             _department = prototypeDepartment;
             departmentNameTextBox.Text = prototypeDepartment.Name; 
         }
-
+         
         private void OnSaveDepartment(object sender, RoutedEventArgs e)
         {
             _department.Name = departmentNameTextBox.Text;

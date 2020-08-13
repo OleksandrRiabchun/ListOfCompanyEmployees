@@ -16,9 +16,9 @@ namespace ListOfCompanyEmployees
             InitializeComponent(); 
             _employee = employee; 
             employeeName.Text = _employee.Name;
-            employeeAge.Text = _employee.Age.ToString(); 
+            employeeAge.CaretIndex = _employee.Age;
             employeeDep.ItemsSource = dep;
-            employeeSalary.Text = _employee.Salary.ToString();  
+            employeeSalary.DataContext = _employee.Salary;  
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

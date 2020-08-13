@@ -4,13 +4,13 @@ namespace ListOfCompanyEmployees
 {
     public class Department : INotifyPropertyChanged
     {
-        private string name;
+        private string _name;
         public string Name
         {
-            get { return name; } 
+            get { return _name; } 
             set
             {
-                name = value;
+                _name = value;
                 NotifyPropertyChanged("Name"); 
             }
         }

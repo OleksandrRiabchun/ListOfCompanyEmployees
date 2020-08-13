@@ -6,58 +6,58 @@ namespace ListOfCompanyEmployees
     public class Employee : INotifyPropertyChanged
     { 
         private readonly CultureInfo _culture;
-        private int id;
-        private string name;
-        private int age;
-        private Department department;
-        private decimal salary;
+        private int _id;
+        private string _name;
+        private int _age;
+        private Department _department;
+        private decimal _salary;
 
         public int Id 
         {
-            get { return id; }
+            get { return _id; }
             set
             {
-                id = value;
+                _id = value;
                 NotifyPropertyChanged("Id");
             }
         }
 
         public string Name
         {
-            get { return name; }
+            get { return _name; }
             set
             {
-                name = value;
+                _name = value;
                 NotifyPropertyChanged("Name");
             }
         }
 
         public int Age
         {
-            get { return age; }
+            get { return _age; }
             set
             {
-                age = value;
+                _age = value;
                 NotifyPropertyChanged("Age");
             }
         }
 
         public Department Department
         {
-            get { return department; }
+            get { return _department; }
             set
             {
-                department = value;
+                _department = value;
                 NotifyPropertyChanged("Department");
             }
         }
 
         public decimal Salary
         {
-            get { return salary; }
+            get { return _salary; }
             set
             {
-                salary = value;
+                _salary = value;
                 NotifyPropertyChanged("Salary");
             }
         } 
@@ -71,8 +71,6 @@ namespace ListOfCompanyEmployees
         public Employee(CultureInfo culture = default)
         {
             _culture = culture ?? CultureInfo.CreateSpecificCulture("uk-UA");
-        }
-
-        public override string ToString() => $"{Id}\t{Name}\t{Age}\t{Department}\t{Salary.ToString("C", _culture)}";
+        } 
     }
 }

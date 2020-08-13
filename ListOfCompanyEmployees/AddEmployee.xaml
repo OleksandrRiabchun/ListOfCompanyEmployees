@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ListOfCompanyEmployees"
         mc:Ignorable="d"
-        Title="Добавьте (имените) сотрудника!!!" Height="650" Width="900">
+        Title="Добавьте (измените) сотрудника!!!" Height="650" Width="900">
     <Grid>
         <Label Content="Введите данные сотрудника" Height="70" FontSize="42" 
                HorizontalAlignment="Center" VerticalAlignment="Top"/>

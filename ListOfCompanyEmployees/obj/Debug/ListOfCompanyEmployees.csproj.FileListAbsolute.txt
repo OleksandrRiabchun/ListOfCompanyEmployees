@@ -42,3 +42,4 @@ C:\Users\Олександр\Desktop\GitKraken\List_Company\ListOfCompanyEmployee
 C:\Users\Олександр\Desktop\GitKraken\List_Company\ListOfCompanyEmployees\obj\Debug\ListOfCompanyEmployees.csproj.CoreCompileInputs.cache
 C:\Users\Олександр\Desktop\GitKraken\List_Company\ListOfCompanyEmployees\obj\Debug\ListOfCompanyEmployees.exe
 C:\Users\Олександр\Desktop\GitKraken\List_Company\ListOfCompanyEmployees\obj\Debug\ListOfCompanyEmployees.pdb
+C:\Users\Олександр\Desktop\GitKraken\List_Company\ListOfCompanyEmployees\obj\Debug\ListOfCompanyEmployees.csprojAssemblyReference.cache

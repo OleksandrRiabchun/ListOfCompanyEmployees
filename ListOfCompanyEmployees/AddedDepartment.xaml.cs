@@ -17,8 +17,13 @@ namespace ListOfCompanyEmployees
          
         private void OnSaveDepartment(object sender, RoutedEventArgs e)
         {
-            _department.Name = departmentNameTextBox.Text;
-            this.Close();
+            if (departmentNameTextBox.Text != "")
+            {
+                _department.Name = departmentNameTextBox.Text;
+            }
+            else { MessageBox.Show("Введите департамент"); return; }
+             
+            Close();
         }
     }
 }

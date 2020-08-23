@@ -4,7 +4,7 @@ using System.Globalization;
 namespace ListOfCompanyEmployees
 {
     public class Employee : INotifyPropertyChanged
-    { 
+    {
         private readonly CultureInfo _culture;
         private int _id;
         private string _name;
@@ -12,9 +12,9 @@ namespace ListOfCompanyEmployees
         private Department _department;
         private decimal _salary;
 
-        public int Id 
+        public int Id
         {
-            get { return _id; }
+            get => _id;
             set
             {
                 _id = value;
@@ -24,7 +24,7 @@ namespace ListOfCompanyEmployees
 
         public string Name
         {
-            get { return _name; }
+            get => _name;
             set
             {
                 _name = value;
@@ -34,7 +34,7 @@ namespace ListOfCompanyEmployees
 
         public int Age
         {
-            get { return _age; }
+            get => _age;
             set
             {
                 _age = value;
@@ -44,7 +44,7 @@ namespace ListOfCompanyEmployees
 
         public Department Department
         {
-            get { return _department; }
+            get => _department;
             set
             {
                 _department = value;
@@ -54,23 +54,21 @@ namespace ListOfCompanyEmployees
 
         public decimal Salary
         {
-            get { return _salary; }
+            get => _salary;
             set
             {
                 _salary = value;
                 NotifyPropertyChanged("Salary");
             }
-        } 
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string propName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
-        }
 
         public Employee(CultureInfo culture = default)
         {
             _culture = culture ?? CultureInfo.CreateSpecificCulture("uk-UA");
-        } 
+        }
+
+        public void NotifyPropertyChanged(string propName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
     }
 }

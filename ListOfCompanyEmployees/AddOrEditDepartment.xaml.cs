@@ -5,10 +5,10 @@ namespace ListOfCompanyEmployees
     /// <summary>
     /// Логика взаимодействия для AddedDepartment.xaml
     /// </summary>
-    public partial class AddDepartmentForm : Window
+    public partial class AddOrEditDepartment : Window
     {
         private readonly Department _department;
-        public AddDepartmentForm(Department prototypeDepartment)
+        public AddOrEditDepartment(Department prototypeDepartment)
         {
             InitializeComponent();
             _department = prototypeDepartment;

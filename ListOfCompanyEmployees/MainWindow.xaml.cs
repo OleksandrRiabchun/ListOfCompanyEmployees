@@ -1,52 +1,93 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace ListOfCompanyEmployees
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-        ObservableCollection<Employee> items = new ObservableCollection<Employee>();
-        ObservableCollection<Department> dep = new ObservableCollection<Department>();
+        private readonly ObservableCollection<Employee> _employees = new ObservableCollection<Employee>();
+        private readonly ObservableCollection<Department> _departments = new ObservableCollection<Department>();
 
         public MainWindow()
-        { 
-            InitializeComponent(); 
-            FillList(); 
-        }   
-        void FillList()
         {
-            //items.Add(new Employee { Name = "Петр1", Department = "Отдел 1", Salary = 1000 });
-            //items.Add(new Employee { Name = "Петр2", Department = "Отдел 2", Salary = 2000 });
-            //items.Add(new Employee { Name = "Петр3", Department = "Отдел 3", Salary = 3000 });
-            //items.Add(new Employee { Name = "Петр4", Department = "Отдел 4", Salary = 4000 });
-            //items.Add(new Employee { Name = "Петр5", Department = "Отдел 5", Salary = 5000 });
-            //Employee.ItemsSource = items;
-            //dep.Add(new Department { NameDep = "Отдел 1" });
-            //dep.Add(new Department { NameDep = "Отдел 2" });
-            //dep.Add(new Department { NameDep = "Отдел 3" });
-            //Department.ItemsSource = dep; 
+            InitializeComponent();
+            FillDepartments();
+            FilEmployeest();
         }
 
-        public void AddDepartment(object sender, RoutedEventArgs e)
-        { 
-            //addded.Show(); 
+        private void AddNewEmployee(object sender, RoutedEventArgs e)
+        {
+            var nextId = _employees.Count + 1;
+            var newEmployee = new Employee();
+            var addEmployee = new AddOrEditEmployee(newEmployee, _departments);
+            addEmployee.Show();
+            addEmployee.Closed += (s, ew) => _employees.Add(
+                new Employee
+                {
+                    Id = nextId, Name = newEmployee.Name, Department = newEmployee.Department, Age = newEmployee.Age, Salary = newEmployee.Salary
+                });
         }
 
-        public void Adddd(object obj)
+        private void AddNewDepartments(object sender, RoutedEventArgs e)
         {
-            dep.Add(new Department { Name = obj.ToString() }); ; 
-            Department.ItemsSource = dep;
+            var newDepartment = new Department();
+            var addDepartmentForm = new AddOrEditDepartment(newDepartment);
+            addDepartmentForm.Show();
+            addDepartmentForm.Closed += (s, ea) => _departments.Add(newDepartment);
         }
 
-        private void Department_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ChangeEmployee(object sender, RoutedEventArgs e)
         {
-            if (e.AddedItems[0] == dep[0]) Employee.ItemsSource = items[0].ToString();
-            if (e.AddedItems[0] == dep[1]) Employee.ItemsSource = items[1].ToString();
-            if (e.AddedItems[0] == dep[2]) Employee.ItemsSource = items[2].ToString(); 
+            var selectedEmployee = lbEmployee.SelectedItem as Employee;
+            var selectedIndex = lbEmployee.SelectedIndex;
+            if (selectedEmployee is null)
+            {
+                MessageBox.Show("Выберите сотрудника");
+                return;
+            }
+
+            var changeEmployee = new AddOrEditEmployee(selectedEmployee, _departments);
+            changeEmployee.Show();
+            changeEmployee.Closed += (s, ea) => _employees.RemoveAt(selectedIndex);
+            changeEmployee.Closed += (s, ea) => _employees.Add(selectedEmployee);
+        }
+
+        private void ChangeDepartment(object sender, RoutedEventArgs e)
+        {
+            var selectDepartment = lbDepartmant.SelectedItem as Department;
+            var selectedIndex = lbDepartmant.SelectedIndex;
+            if (selectDepartment is null)
+            {
+                MessageBox.Show("Выберите департамент");
+                return;
+            }
+
+            var changeDepartment = new AddOrEditDepartment(selectDepartment);
+            changeDepartment.Show();
+            changeDepartment.Closed += (s, ea) => _departments.RemoveAt(selectedIndex);
+            changeDepartment.Closed += (s, ea) => _departments.Add(selectDepartment);
+        }
+
+        private void FillDepartments()
+        {
+            _departments.Add(new Department { Name = "Department 1" });
+            _departments.Add(new Department { Name = "Department 2" });
+            _departments.Add(new Department { Name = "Department 3" });
+
+            lbDepartmant.ItemsSource = _departments;
+        }
+
+        private void FilEmployeest()
+        {
+            var rnd = new Random();
+            Department GetDep() => _departments[rnd.Next(0, _departments.Count - 1)];
+
+            _employees.Add(new Employee { Id = 1, Name = "Vasia", Department = GetDep(), Age = 25, Salary = 3000m });
+            _employees.Add(new Employee { Id = 2, Name = "Petya", Department = GetDep(), Age = 27, Salary = 6000m });
+            _employees.Add(new Employee { Id = 3, Name = "Kolya", Department = GetDep(), Age = 30, Salary = 8000m });
+
+            lbEmployee.ItemsSource = _employees;
         }
     }
 }

@@ -1,0 +1,48 @@
+﻿<Window x:Class="ListOfCompanyEmployees.AddOrEditEmployee"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Добавьте (измените) сотрудника!!!" >
+    <StackPanel Orientation="Vertical" Margin="10" HorizontalAlignment="Center" Width="400" Height="Auto">
+        <StackPanel.Resources>
+            <Style TargetType="{x:Type DockPanel}">
+                <Setter Property="Margin" Value="0 0 0 10"/>
+            </Style>
+
+            <Style x:Key="RowStyle" TargetType="{x:Type Control}">
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+            </Style>
+
+            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource RowStyle}" />
+            <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource RowStyle}" />
+        </StackPanel.Resources>
+
+        <DockPanel>
+            <Label DockPanel.Dock="Top" Content="_Имя" Target="{Binding ElementName=employeeName}"/>
+            <TextBox DockPanel.Dock="Bottom" x:Name="employeeName"/>
+        </DockPanel>
+
+        <DockPanel>
+            <Label DockPanel.Dock="Top" Content="_Возраст" Target="{Binding ElementName=employeeAge}"/>
+            <TextBox DockPanel.Dock="Bottom" x:Name="employeeAge" />
+        </DockPanel>
+
+        <DockPanel>
+            <Label DockPanel.Dock="Top" Content="_Зарплата" Target="{Binding ElementName=employeeSalary}"/>
+            <TextBox DockPanel.Dock="Bottom" x:Name="employeeSalary" />
+        </DockPanel>
+
+        <DockPanel>
+            <Label DockPanel.Dock="Top" Content="_Департамент" Target="{Binding ElementName=employeeDep}"/>
+            <ComboBox x:Name="employeeDep" />
+        </DockPanel>
+
+        <Button Content="_OK" 
+                Height="30" Width="100" Margin="0 20 0 10"
+                Click="Button_Click" 
+                IsDefault="True" />
+    </StackPanel>
+</Window>

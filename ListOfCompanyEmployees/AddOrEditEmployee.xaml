@@ -3,8 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:validationRules="clr-namespace:ListOfCompanyEmployees.ValidationRules"
+        xmlns:converters="clr-namespace:ListOfCompanyEmployees.Converters"
         mc:Ignorable="d"
         Title="Добавьте (измените) сотрудника!!!" >
+    <Window.Resources>
+        <converters:InverseAndBooleansToBooleanConverter x:Key="InverseAndBooleansToBooleanConverter"/>
+    </Window.Resources>
     <StackPanel Orientation="Vertical" Margin="10" HorizontalAlignment="Center" Width="400" Height="Auto">
         <StackPanel.Resources>
             <Style TargetType="{x:Type DockPanel}">
@@ -16,7 +21,7 @@
                 <Setter Property="VerticalContentAlignment" Value="Center"/>
             </Style>
 
-            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource RowStyle}" />
+            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource textBoxInError}" />
             <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource RowStyle}" />
         </StackPanel.Resources>
 
@@ -24,7 +29,7 @@
             <Label DockPanel.Dock="Top" Content="_Имя" Target="{Binding ElementName=employeeName}"/>
             <TextBox DockPanel.Dock="Bottom" x:Name="employeeName">
                 <TextBox.Text>
-                    <Binding Path="Name">
+                    <Binding Path="Name" ValidatesOnExceptions="True">
                         <Binding.ValidationRules>
                             <DataErrorValidationRule/>
                         </Binding.ValidationRules>
@@ -35,11 +40,13 @@
 
         <DockPanel>
             <Label DockPanel.Dock="Top" Content="_Возраст" Target="{Binding ElementName=employeeAge}"/>
-            <TextBox DockPanel.Dock="Bottom" x:Name="employeeAge">
+            <TextBox DockPanel.Dock="Bottom" x:Name="employeeAge"
+                     Style="{StaticResource textBoxInError}">
                 <TextBox.Text>
-                    <Binding Path="Age">
+                    <Binding Path="Age" 
+                             ValidatesOnExceptions="True">
                         <Binding.ValidationRules>
-                            <DataErrorValidationRule/>
+                            <validationRules:AgeRangeRule Min="18" Max="60"/>
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
@@ -50,7 +57,7 @@
             <Label DockPanel.Dock="Top" Content="_Зарплата" Target="{Binding ElementName=employeeSalary}"/>
             <TextBox DockPanel.Dock="Bottom" x:Name="employeeSalary">
                 <TextBox.Text>
-                    <Binding Path="Salary">
+                    <Binding Path="Salary" ValidatesOnExceptions="True">
                         <Binding.ValidationRules>
                             <DataErrorValidationRule/>
                         </Binding.ValidationRules>
@@ -67,6 +74,14 @@
         <Button Content="_OK" 
                 Height="30" Width="100" Margin="0 20 0 10"
                 Click="Button_Click" 
-                IsDefault="True" />
+                IsDefault="True">
+            <Button.IsEnabled>
+                <MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="TwoWay">
+                    <Binding ElementName="employeeName" Path="(Validation.HasError)" />
+                    <Binding ElementName="employeeAge" Path="(Validation.HasError)" />
+                    <Binding ElementName="employeeSalary" Path="(Validation.HasError)" />
+                </MultiBinding>
+            </Button.IsEnabled>
+        </Button>
     </StackPanel>
 </Window>

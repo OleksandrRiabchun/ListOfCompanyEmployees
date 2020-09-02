@@ -1,11 +1,9 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Globalization;
-using System.Windows;
 
 namespace ListOfCompanyEmployees
 {
-    public class Employee : INotifyPropertyChanged
+    public class Employee : BaseNotifyPropertyChanged, IDataErrorInfo
     {
         private readonly CultureInfo _culture;
         private int _id;
@@ -20,7 +18,7 @@ namespace ListOfCompanyEmployees
             set
             {
                 _id = value;
-                NotifyPropertyChanged("Id");
+                NotifyPropertyChanged(nameof(Id));
             }
         }
 
@@ -30,7 +28,7 @@ namespace ListOfCompanyEmployees
             set
             {
                 _name = value;
-                NotifyPropertyChanged("Name");
+                NotifyPropertyChanged(nameof(Name));
             }
         }
 
@@ -40,7 +38,7 @@ namespace ListOfCompanyEmployees
             set
             {
                 _age = value;
-                NotifyPropertyChanged("Age");
+                NotifyPropertyChanged(nameof(Age));
             }
         }
 
@@ -50,7 +48,7 @@ namespace ListOfCompanyEmployees
             set
             {
                 _department = value;
-                NotifyPropertyChanged("Department");
+                NotifyPropertyChanged(nameof(Department));
             }
         }
 
@@ -60,51 +58,41 @@ namespace ListOfCompanyEmployees
             set
             {
                 _salary = value;
-                NotifyPropertyChanged("Salary");
+                NotifyPropertyChanged(nameof(Salary));
             }
         }
 
-        public string this[string columnName]
+        public string Error => null;
+
+        public string this[string name]
         {
             get
             {
-                string error = String.Empty;
-                switch (columnName)
+                switch (name)
                 {
                     case "Name":
                         if (int.TryParse(Name, out _))
                         {
-                            MessageBox.Show(error = "Некорректное имя!!!");
+                            return "Некорректное имя!!!";
                         }
                         break;
-
-                    case "Age":
-                        if ((Age < 0) || (Age > 100))
-                        {
-                            MessageBox.Show(error = "Возраст должен быть меньше 0 и больше 100");
-                        }
-                        break;
-
                     case "Salary":
                         if (Salary < 0)
                         {
-                            MessageBox.Show(error = "Зарплата не может быть отрицательной");
+                            return "Зарплата не может быть отрицательной";
                         }
-                        break; 
+                        break;
+                    default:
+                        return null;
                 }
-                return error;
+
+                return null;
             }
-        } 
-
-        public string Error => throw new System.NotImplementedException(); 
-
-        public event PropertyChangedEventHandler PropertyChanged;
+        }
 
         public Employee(CultureInfo culture = default)
         {
             _culture = culture ?? CultureInfo.CreateSpecificCulture("uk-UA");
         }
-
-        public void NotifyPropertyChanged(string propName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
     }
 }

@@ -6,12 +6,7 @@ using System.Windows.Controls;
 
 namespace ListOfCompanyEmployees
 {
-    interface INotifyPropertyChanged : IDataErrorInfo
-    {
-        new string Error { get; }
-        new string this[string columnName] { get; }
-    }
-    public class Department : INotifyPropertyChanged 
+    public class Department : BaseNotifyPropertyChanged, IDataErrorInfo
     { 
         private string _name;  
         public string Name
@@ -42,11 +37,7 @@ namespace ListOfCompanyEmployees
             }
         }
 
-        public string Error => throw new System.NotImplementedException();
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string propName) =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+        public string Error { get; }
 
         public override string ToString() => Name;
     }

@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="textBoxInError" TargetType="{x:Type TextBox}">
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="true">
+                <Setter Property="ToolTip"
+                        Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                        Path=(Validation.Errors)/ErrorContent}"/>
+            </Trigger>
+        </Style.Triggers>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
+    <ControlTemplate x:Key="validationTemplate">
+        <DockPanel>
+            <TextBlock Height="30" VerticalAlignment="Bottom" Foreground="Red">Invalid data </TextBlock>
+            <AdornedElementPlaceholder/>
+        </DockPanel>
+    </ControlTemplate>
+</ResourceDictionary>

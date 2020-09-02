@@ -13,7 +13,7 @@ namespace ListOfCompanyEmployees
         {
             InitializeComponent();
             FillDepartments();
-            FilEmployeest();
+            FilEmployeest(); 
         }
 
         private void AddNewEmployee(object sender, RoutedEventArgs e)
@@ -22,21 +22,36 @@ namespace ListOfCompanyEmployees
             var newEmployee = new Employee();
             var addEmployee = new AddOrEditEmployee(newEmployee, _departments);
             addEmployee.Show();
-            addEmployee.Closed += (s, ew) => _employees.Add(
-                new Employee
+            addEmployee.Closing += (s, ea) =>
+            {
+                if (MessageBox.Show("Сохранить данные?", "Внимание", MessageBoxButton.YesNo) == MessageBoxResult.Yes) // Далі по коду часто повторяюсь, вважаю що треба поправити
                 {
-                    Id = nextId, Name = newEmployee.Name, Department = newEmployee.Department, Age = newEmployee.Age, Salary = newEmployee.Salary
-                });
-        }
+                    _employees.Add(new Employee
+                    {
+                        Id = nextId, Name = newEmployee.Name, Department = newEmployee.Department, Age = newEmployee.Age, Salary = newEmployee.Salary
+                    });
+                } 
+            }; 
+        } 
 
         private void AddNewDepartments(object sender, RoutedEventArgs e)
         {
             var newDepartment = new Department();
             var addDepartmentForm = new AddOrEditDepartment(newDepartment);
             addDepartmentForm.Show();
-            addDepartmentForm.Closed += (s, ea) => _departments.Add(newDepartment);
+            addDepartmentForm.Closing += (s, ea) =>
+            {
+                if (MessageBox.Show("Сохранить данные?", "Внимание", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    _departments.Add(newDepartment);
+                }
+                else
+                {
+                    _departments.Remove(newDepartment);
+                }
+            }; 
         }
-
+ 
         private void ChangeEmployee(object sender, RoutedEventArgs e)
         {
             var selectedEmployee = lbEmployee.SelectedItem as Employee;
@@ -49,31 +64,51 @@ namespace ListOfCompanyEmployees
 
             var changeEmployee = new AddOrEditEmployee(selectedEmployee, _departments);
             changeEmployee.Show();
-            changeEmployee.Closed += (s, ea) => _employees.RemoveAt(selectedIndex);
-            changeEmployee.Closed += (s, ea) => _employees.Add(selectedEmployee);
+            changeEmployee.Closing += (s, ea) =>
+            {
+                if (MessageBox.Show("Сохранить данные?", "Внимание", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    _employees.RemoveAt(selectedIndex);
+                    _employees.Add(selectedEmployee);
+                }
+                else
+                {
+                    _employees.Remove(selectedEmployee);
+                }
+            }; 
         }
 
         private void ChangeDepartment(object sender, RoutedEventArgs e)
         {
             var selectDepartment = lbDepartmant.SelectedItem as Department;
             var selectedIndex = lbDepartmant.SelectedIndex;
+
             if (selectDepartment is null)
             {
                 MessageBox.Show("Выберите департамент");
                 return;
-            }
-
+            } 
             var changeDepartment = new AddOrEditDepartment(selectDepartment);
-            changeDepartment.Show();
-            changeDepartment.Closed += (s, ea) => _departments.RemoveAt(selectedIndex);
-            changeDepartment.Closed += (s, ea) => _departments.Add(selectDepartment);
+            changeDepartment.Show(); 
+            changeDepartment.Closing += (s, ea) =>
+            {
+                if (MessageBox.Show("Сохранить данные?", "Внимание", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    _departments.RemoveAt(selectedIndex);
+                    _departments.Add(selectDepartment);
+                }
+                else
+                {
+                    _departments.Remove(selectDepartment);
+                }
+            };  
         }
 
         private void FillDepartments()
-        {
+        { 
             _departments.Add(new Department { Name = "Department 1" });
             _departments.Add(new Department { Name = "Department 2" });
-            _departments.Add(new Department { Name = "Department 3" });
+            _departments.Add(new Department { Name = "Department 3" }); 
 
             lbDepartmant.ItemsSource = _departments;
         }

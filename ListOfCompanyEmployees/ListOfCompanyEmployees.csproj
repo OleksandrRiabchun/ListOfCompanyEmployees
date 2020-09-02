@@ -59,9 +59,13 @@
     <Compile Include="AddOrEditEmployee.xaml.cs">
       <DependentUpon>AddOrEditEmployee.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BaseNotifyPropertyChanged.cs" />
+    <Compile Include="Converters\InverseAndBooleansToBooleanConverter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="ValidationRules\AgeRangeRule.cs" />
     <Page Include="AddOrEditDepartment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -84,6 +88,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\General.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -114,5 +122,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

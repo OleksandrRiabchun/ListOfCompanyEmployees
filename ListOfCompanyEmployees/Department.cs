@@ -1,17 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Globalization;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace ListOfCompanyEmployees
 {
-    interface INotifyPropertyChanged : IDataErrorInfo
-    {
-        new string Error { get; }
-        new string this[string columnName] { get; }
-    }
-    public class Department : INotifyPropertyChanged 
+    public class Department : BaseNotifyPropertyChanged, IDataErrorInfo
     { 
         private string _name;  
         public string Name
@@ -27,26 +20,23 @@ namespace ListOfCompanyEmployees
         public string this[string columnName]
         {
             get
-            {
-                string error = String.Empty;
+            {  
                 switch (columnName)
-                { 
+                {
                     case "Name":
                         if (int.TryParse(Name, out _))
                         {
-                            MessageBox.Show(error = "Некорректное имя!!!");
+                            return "Некорректное имя!!!";
                         }
-                        break; 
+                        break;
+                    default:
+                        return null;
                 }
-                return error;
+                return null;
             }
         }
 
-        public string Error => throw new System.NotImplementedException();
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string propName) =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+        public string Error => null;
 
         public override string ToString() => Name;
     }

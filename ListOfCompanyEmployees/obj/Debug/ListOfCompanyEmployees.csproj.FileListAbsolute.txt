@@ -58,4 +58,11 @@ C:\Users\Олександр\Desktop\GitKraken\List_Company\ListOfCompanyEmployee
 C:\Users\Олександр\Desktop\GitKraken\List_Company\ListOfCompanyEmployees\obj\Debug\AddOrEditEmployee.baml
 C:\Users\Олександр\Desktop\GitKraken\List_Company\ListOfCompanyEmployees\obj\Debug\AddOrEditDepartment.g.cs
 C:\Users\Олександр\Desktop\GitKraken\List_Company\ListOfCompanyEmployees\obj\Debug\AddOrEditEmployee.g.cs
+C:\Users\denis.sidenko\Downloads\List_Company\ListOfCompanyEmployees\obj\Debug\ListOfCompanyEmployees_MarkupCompile.lref
+C:\Users\denis.sidenko\Downloads\List_Company\ListOfCompanyEmployees\obj\Debug\Resources\General.baml
+C:\Users\denis.sidenko\Downloads\List_Company\ListOfCompanyEmployees\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\denis.sidenko\Downloads\List_Company\ListOfCompanyEmployees\obj\Debug\ListOfCompanyEmployees.csprojAssemblyReference.cache
+C:\Users\Олександр\Desktop\GitKraken\List_Company\ListOfCompanyEmployees\obj\Debug\Resources\General.baml
+C:\Users\Олександр\Desktop\GitKraken\List_Company\ListOfCompanyEmployees\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Олександр\Desktop\GitKraken\List_Company\ListOfCompanyEmployees\obj\Debug\ListOfCompanyEmployees_MarkupCompile.lref
 C:\Users\Олександр\Desktop\GitKraken\List_Company\ListOfCompanyEmployees\obj\Debug\ListOfCompanyEmployees.csprojAssemblyReference.cache

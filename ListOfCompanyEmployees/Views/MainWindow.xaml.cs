@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows;
+using ListOfCompanyEmployees.Models;
 
-namespace ListOfCompanyEmployees
+namespace ListOfCompanyEmployees.Views
 {
     public partial class MainWindow : Window
     {
@@ -48,7 +49,7 @@ namespace ListOfCompanyEmployees
 
         private void ChangeEmployee(object sender, RoutedEventArgs e)
         {
-            if (!(lbEmployee.SelectedItem is Employee selectedEmployee))
+            if (!(lvEmployee.SelectedItem is Employee selectedEmployee))
             {
                 MessageBox.Show("Выберите сотрудника");
                 return;
@@ -58,7 +59,7 @@ namespace ListOfCompanyEmployees
                 selectedEmployee.Clone(),
                 empl =>
                 {
-                    _employees.RemoveAt(lbEmployee.SelectedIndex); 
+                    _employees.RemoveAt(lvEmployee.SelectedIndex); 
                     _employees.Add(empl);
                 },
                 _departments);
@@ -113,7 +114,7 @@ namespace ListOfCompanyEmployees
             _employees.Add(new Employee { Id = 2, Name = "Petya", Department = GetDep(), Age = 27, Salary = 6000m });
             _employees.Add(new Employee { Id = 3, Name = "Kolya", Department = GetDep(), Age = 30, Salary = 8000m });
 
-            lbEmployee.ItemsSource = _employees;
+            lvEmployee.ItemsSource = _employees;
         }
 
         #endregion

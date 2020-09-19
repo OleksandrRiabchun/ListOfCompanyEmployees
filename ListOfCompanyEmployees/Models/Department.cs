@@ -1,8 +1,7 @@
-﻿using System;
-using System.ComponentModel;
-using System.Windows;
+﻿using System.ComponentModel;
+using ListOfCompanyEmployees.Models.Base;
 
-namespace ListOfCompanyEmployees
+namespace ListOfCompanyEmployees.Models
 {
     public class Department : BaseNotifyPropertyChanged, IDataErrorInfo
     { 

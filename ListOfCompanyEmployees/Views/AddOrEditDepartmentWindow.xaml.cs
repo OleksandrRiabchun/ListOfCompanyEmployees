@@ -1,6 +1,7 @@
 ﻿using System.Windows;
+using ListOfCompanyEmployees.Models;
 
-namespace ListOfCompanyEmployees
+namespace ListOfCompanyEmployees.Views
 {
     /// <summary>
     /// Логика взаимодействия для AddedDepartment.xaml

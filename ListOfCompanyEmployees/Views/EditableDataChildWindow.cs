@@ -2,13 +2,12 @@
 using System.ComponentModel;
 using System.Windows;
 
-namespace ListOfCompanyEmployees
+namespace ListOfCompanyEmployees.Views
 {
     public class EditableDataChildWindow : Window, IDisposable
     {
         private readonly INotifyPropertyChanged _data;
-        private bool _isDataChanged;
-        
+        public bool IsDataChanged { get; protected set; }
         public bool IsSavedData { get; protected set; }
 
         public EditableDataChildWindow(INotifyPropertyChanged data)
@@ -18,12 +17,12 @@ namespace ListOfCompanyEmployees
             _data.PropertyChanged += OnDataChanged;
         }
 
-        private void OnDataChanged(object sender, PropertyChangedEventArgs e) => _isDataChanged = true;
+        private void OnDataChanged(object sender, PropertyChangedEventArgs e) => IsDataChanged = true;
 
         protected void OnClosing(object _, CancelEventArgs e)
         {
             // If data is dirty, notify user and ask for a response
-            if (_isDataChanged && !IsSavedData)
+            if (IsDataChanged && !IsSavedData)
             {
                 var msg = "Data was changed. Close without saving?";
                 var result =

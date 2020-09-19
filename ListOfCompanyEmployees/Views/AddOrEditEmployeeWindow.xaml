@@ -1,12 +1,9 @@
-﻿<local:EditableDataChildWindow x:Class="ListOfCompanyEmployees.AddOrEditEmployeeWindow"
+﻿<views:EditableDataChildWindow x:Class="ListOfCompanyEmployees.Views.AddOrEditEmployeeWindow"
                          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                          xmlns:validationRules="clr-namespace:ListOfCompanyEmployees.ValidationRules"
                          xmlns:converters="clr-namespace:ListOfCompanyEmployees.Converters"
-                         xmlns:local="clr-namespace:ListOfCompanyEmployees"
-                         mc:Ignorable="d"
+                         xmlns:views="clr-namespace:ListOfCompanyEmployees.Views"
                          Closing="OnClosing"
                          Title="Добавьте (измените) сотрудника!!!" >
     <Window.Resources>
@@ -94,4 +91,4 @@
             </Button.IsEnabled>
         </Button>
     </StackPanel>
-</local:EditableDataChildWindow>
+</views:EditableDataChildWindow>

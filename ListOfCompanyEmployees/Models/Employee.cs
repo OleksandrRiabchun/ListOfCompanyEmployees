@@ -1,8 +1,8 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Globalization;
+using ListOfCompanyEmployees.Models.Base;
 
-namespace ListOfCompanyEmployees
+namespace ListOfCompanyEmployees.Models
 {
     public class Employee : BaseNotifyPropertyChanged, IDataErrorInfo
     {
@@ -70,7 +70,7 @@ namespace ListOfCompanyEmployees
                 switch (name)
                 {
                     case "Name":
-                        if (int.TryParse(Name, out _))
+                        if (int.TryParse(Name, out _) || string.IsNullOrWhiteSpace(Name) || Name.Length < 3)
                         {
                             return "Некорректное имя!";
                         }

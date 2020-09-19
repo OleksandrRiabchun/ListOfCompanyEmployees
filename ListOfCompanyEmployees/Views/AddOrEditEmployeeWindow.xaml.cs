@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Controls;
+using ListOfCompanyEmployees.Models;
 
-namespace ListOfCompanyEmployees
+namespace ListOfCompanyEmployees.Views
 {
     /// <summary>
     /// Логика взаимодействия для AddEmployee.xaml
@@ -25,8 +27,19 @@ namespace ListOfCompanyEmployees
 
         private void OnSaveClick(object sender, RoutedEventArgs e)
         {
+            employeeName.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
+            employeeAge.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
+            employeeSalary.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
+            //employeeDep.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
+
+            if (Validation.GetHasError(employeeName)
+             || Validation.GetHasError(employeeAge)
+             || Validation.GetHasError(employeeSalary)
+             || Validation.GetHasError(employeeDep))
+            return;
+
             _saveEmpl(_employee);
-            IsSavedData = true;
+            WasSavedData = true;
             Close();
         }
     }

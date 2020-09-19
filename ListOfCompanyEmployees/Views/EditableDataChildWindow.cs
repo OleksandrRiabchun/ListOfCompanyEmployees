@@ -8,7 +8,7 @@ namespace ListOfCompanyEmployees.Views
     {
         private readonly INotifyPropertyChanged _data;
         public bool IsDataChanged { get; protected set; }
-        public bool IsSavedData { get; protected set; }
+        public bool WasSavedData { get; protected set; }
 
         public EditableDataChildWindow(INotifyPropertyChanged data)
         {
@@ -22,7 +22,7 @@ namespace ListOfCompanyEmployees.Views
         protected void OnClosing(object _, CancelEventArgs e)
         {
             // If data is dirty, notify user and ask for a response
-            if (IsDataChanged && !IsSavedData)
+            if (IsDataChanged && !WasSavedData)
             {
                 var msg = "Data was changed. Close without saving?";
                 var result =

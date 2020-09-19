@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Globalization;
 
 namespace ListOfCompanyEmployees
@@ -89,9 +90,23 @@ namespace ListOfCompanyEmployees
 
         public string Error => null;
 
+        public Employee(int id) : this()
+        {
+            _id = id;
+        }
+
         public Employee(CultureInfo culture = default)
         {
             _culture = culture ?? CultureInfo.CreateSpecificCulture("uk-UA");
         }
+
+        public Employee Clone() => new Employee(_culture)
+        {
+            Id = _id,
+            Name = _name.Clone().ToString(),
+            Department = Department,
+            Age = _age,
+            Salary = _salary
+        };
     }
 }

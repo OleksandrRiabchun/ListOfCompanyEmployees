@@ -274,3 +274,5 @@ Docker/rabbitmq_data/
 rabbitmq_data/
 
 ListOfCompanyEmployees/obj/
+
+ListOfCompanyEmployees/bin/

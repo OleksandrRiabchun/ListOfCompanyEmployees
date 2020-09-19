@@ -28,8 +28,8 @@
             </ListView>
             <Button Margin="10" Height="25" Width="70" 
                     VerticalAlignment="Bottom"
-                    Click="AddNewEmployee">Добавить</Button>
-            <Button Content="Изменить" Height="25" Width="70" Click="ChangeEmployee"/>
+                    Click="AddNewEmployeeClick">Добавить</Button>
+            <Button Content="Изменить" Height="25" Width="70" Click="ChangeEmployeeClick"/>
         </StackPanel>
 
         <StackPanel Grid.Column="1">

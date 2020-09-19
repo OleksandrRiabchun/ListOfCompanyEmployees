@@ -56,26 +56,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddOrEditEmployee.xaml.cs">
-      <DependentUpon>AddOrEditEmployee.xaml</DependentUpon>
+    <Compile Include="AddOrEditEmployeeWindow.xaml.cs">
+      <DependentUpon>AddOrEditEmployeeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="BaseNotifyPropertyChanged.cs" />
+    <Compile Include="EditableDataChildWindow.cs" />
     <Compile Include="Converters\InverseAndBooleansToBooleanConverter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ValidationRules\AgeRangeRule.cs" />
-    <Page Include="AddOrEditDepartment.xaml">
+    <Page Include="AddOrEditDepartmentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddOrEditEmployee.xaml">
+    <Page Include="AddOrEditEmployeeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="AddOrEditDepartment.xaml.cs">
-      <DependentUpon>AddOrEditDepartment.xaml</DependentUpon>
+    <Compile Include="AddOrEditDepartmentWindow.xaml.cs">
+      <DependentUpon>AddOrEditDepartmentWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>

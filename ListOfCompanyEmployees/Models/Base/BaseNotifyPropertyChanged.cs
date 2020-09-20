@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using ListOfCompanyEmployees.Annotations;
 
-namespace ListOfCompanyEmployees
+namespace ListOfCompanyEmployees.Models.Base
 {
     public class BaseNotifyPropertyChanged : INotifyPropertyChanged
     {

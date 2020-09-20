@@ -12,7 +12,7 @@ namespace ListOfCompanyEmployees.Converters
             Type targetType,
             object parameter,
             CultureInfo culture) =>
-            values.LongLength <= 0 || values.All(value => !(value is bool) || !(bool)value);
+            values.Length <= 0 || values.All(value => !(value is bool) || !(bool)value);
 
         public object[] ConvertBack(
             object value,

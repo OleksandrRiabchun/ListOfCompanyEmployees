@@ -1,14 +1,15 @@
 ﻿using System.Windows;
+using ListOfCompanyEmployees.Models;
 
-namespace ListOfCompanyEmployees
+namespace ListOfCompanyEmployees.Views
 {
     /// <summary>
     /// Логика взаимодействия для AddedDepartment.xaml
     /// </summary>
-    public partial class AddOrEditDepartment : Window
+    public partial class AddOrEditDepartmentWindow : Window
     {
         private readonly Department _department;
-        public AddOrEditDepartment(Department prototypeDepartment)
+        public AddOrEditDepartmentWindow(Department prototypeDepartment)
         {
             InitializeComponent();
             _department = prototypeDepartment;

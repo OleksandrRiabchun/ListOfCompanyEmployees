@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows;
+using ListOfCompanyEmployees.Models;
 
-namespace ListOfCompanyEmployees
+namespace ListOfCompanyEmployees.Views
 {
     public partial class MainWindow : Window
     {
@@ -13,31 +14,25 @@ namespace ListOfCompanyEmployees
         {
             InitializeComponent();
             FillDepartments();
-            FilEmployeest(); 
+            FillEmployees();
         }
 
         private void AddNewEmployee(object sender, RoutedEventArgs e)
         {
             var nextId = _employees.Count + 1;
-            var newEmployee = new Employee();
-            var addEmployee = new AddOrEditEmployee(newEmployee, _departments);
-            addEmployee.Show();
-            addEmployee.Closing += (s, ea) =>
-            {
-                if (MessageBox.Show("Сохранить данные?", "Внимание", MessageBoxButton.YesNo) == MessageBoxResult.Yes) // Далі по коду часто повторяюсь, вважаю що треба поправити
-                {
-                    _employees.Add(new Employee
-                    {
-                        Id = nextId, Name = newEmployee.Name, Department = newEmployee.Department, Age = newEmployee.Age, Salary = newEmployee.Salary
-                    });
-                } 
-            }; 
-        } 
+            var newEmployee = new Employee(nextId);
+            var window = new AddOrEditEmployeeWindow(
+                newEmployee,
+                empl => _employees.Add(empl),
+                _departments);
+
+            window.Show();
+        }
 
         private void AddNewDepartments(object sender, RoutedEventArgs e)
         {
             var newDepartment = new Department();
-            var addDepartmentForm = new AddOrEditDepartment(newDepartment);
+            var addDepartmentForm = new AddOrEditDepartmentWindow(newDepartment);
             addDepartmentForm.Show();
             addDepartmentForm.Closing += (s, ea) =>
             {
@@ -49,33 +44,27 @@ namespace ListOfCompanyEmployees
                 {
                     _departments.Remove(newDepartment);
                 }
-            }; 
+            };
         }
- 
+
         private void ChangeEmployee(object sender, RoutedEventArgs e)
         {
-            var selectedEmployee = lbEmployee.SelectedItem as Employee;
-            var selectedIndex = lbEmployee.SelectedIndex;
-            if (selectedEmployee is null)
+            if (!(lvEmployee.SelectedItem is Employee selectedEmployee))
             {
                 MessageBox.Show("Выберите сотрудника");
                 return;
             }
 
-            var changeEmployee = new AddOrEditEmployee(selectedEmployee, _departments);
-            changeEmployee.Show();
-            changeEmployee.Closing += (s, ea) =>
-            {
-                if (MessageBox.Show("Сохранить данные?", "Внимание", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            var window = new AddOrEditEmployeeWindow(
+                selectedEmployee.Clone(),
+                empl =>
                 {
-                    _employees.RemoveAt(selectedIndex);
-                    _employees.Add(selectedEmployee);
-                }
-                else
-                {
-                    _employees.Remove(selectedEmployee);
-                }
-            }; 
+                    _employees.RemoveAt(lvEmployee.SelectedIndex); 
+                    _employees.Add(empl);
+                },
+                _departments);
+
+            window.Show();
         }
 
         private void ChangeDepartment(object sender, RoutedEventArgs e)
@@ -87,9 +76,10 @@ namespace ListOfCompanyEmployees
             {
                 MessageBox.Show("Выберите департамент");
                 return;
-            } 
-            var changeDepartment = new AddOrEditDepartment(selectDepartment);
-            changeDepartment.Show(); 
+            }
+
+            var changeDepartment = new AddOrEditDepartmentWindow(selectDepartment);
+            changeDepartment.Show();
             changeDepartment.Closing += (s, ea) =>
             {
                 if (MessageBox.Show("Сохранить данные?", "Внимание", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
@@ -101,19 +91,21 @@ namespace ListOfCompanyEmployees
                 {
                     _departments.Remove(selectDepartment);
                 }
-            };  
+            };
         }
 
+        #region Seed Data
+
         private void FillDepartments()
-        { 
+        {
             _departments.Add(new Department { Name = "Department 1" });
             _departments.Add(new Department { Name = "Department 2" });
-            _departments.Add(new Department { Name = "Department 3" }); 
+            _departments.Add(new Department { Name = "Department 3" });
 
             lbDepartmant.ItemsSource = _departments;
         }
 
-        private void FilEmployeest()
+        private void FillEmployees()
         {
             var rnd = new Random();
             Department GetDep() => _departments[rnd.Next(0, _departments.Count - 1)];
@@ -122,7 +114,9 @@ namespace ListOfCompanyEmployees
             _employees.Add(new Employee { Id = 2, Name = "Petya", Department = GetDep(), Age = 27, Salary = 6000m });
             _employees.Add(new Employee { Id = 3, Name = "Kolya", Department = GetDep(), Age = 30, Salary = 8000m });
 
-            lbEmployee.ItemsSource = _employees;
+            lvEmployee.ItemsSource = _employees;
         }
+
+        #endregion
     }
 }

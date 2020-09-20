@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Globalization;
+using ListOfCompanyEmployees.Models.Base;
 
-namespace ListOfCompanyEmployees
+namespace ListOfCompanyEmployees.Models
 {
     public class Employee : BaseNotifyPropertyChanged, IDataErrorInfo
     {
@@ -69,7 +70,7 @@ namespace ListOfCompanyEmployees
                 switch (name)
                 {
                     case "Name":
-                        if (int.TryParse(Name, out _))
+                        if (int.TryParse(Name, out _) || string.IsNullOrWhiteSpace(Name) || Name.Length < 3)
                         {
                             return "Некорректное имя!";
                         }
@@ -89,9 +90,23 @@ namespace ListOfCompanyEmployees
 
         public string Error => null;
 
+        public Employee(int id) : this()
+        {
+            _id = id;
+        }
+
         public Employee(CultureInfo culture = default)
         {
             _culture = culture ?? CultureInfo.CreateSpecificCulture("uk-UA");
         }
+
+        public Employee Clone() => new Employee(_culture)
+        {
+            Id = _id,
+            Name = _name.Clone().ToString(),
+            Department = Department,
+            Age = _age,
+            Salary = _salary
+        };
     }
 }

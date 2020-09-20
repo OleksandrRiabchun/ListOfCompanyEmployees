@@ -56,38 +56,39 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddOrEditEmployee.xaml.cs">
-      <DependentUpon>AddOrEditEmployee.xaml</DependentUpon>
+    <Compile Include="Views\AddOrEditEmployeeWindow.xaml.cs">
+      <DependentUpon>AddOrEditEmployeeWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BaseNotifyPropertyChanged.cs" />
+    <Compile Include="Models\Base\BaseNotifyPropertyChanged.cs" />
+    <Compile Include="Views\EditableDataChildWindow.cs" />
     <Compile Include="Converters\InverseAndBooleansToBooleanConverter.cs" />
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ValidationRules\AgeRangeRule.cs" />
-    <Page Include="AddOrEditDepartment.xaml">
+    <Page Include="Views\AddOrEditDepartmentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddOrEditEmployee.xaml">
+    <Page Include="Views\AddOrEditEmployeeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="AddOrEditDepartment.xaml.cs">
-      <DependentUpon>AddOrEditDepartment.xaml</DependentUpon>
+    <Compile Include="Views\AddOrEditDepartmentWindow.xaml.cs">
+      <DependentUpon>AddOrEditDepartmentWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Department.cs" />
-    <Compile Include="Employee.cs" />
+    <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Employee.cs" />
     <Page Include="Resources\ExampleResource.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

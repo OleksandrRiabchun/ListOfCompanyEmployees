@@ -1,10 +1,12 @@
-﻿<Window x:Class="ListOfCompanyEmployees.Views.AddOrEditDepartmentWindow"
+﻿<views:EditableDataChildWindow x:Class="ListOfCompanyEmployees.Views.AddOrEditDepartmentWindow" 
+        xmlns:views="clr-namespace:ListOfCompanyEmployees.Views"  
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:converters="clr-namespace:ListOfCompanyEmployees.Converters"
         mc:Ignorable="d"
+        Closing="OnClosing"
         Title="Добавьте (измените) департамент!!!" Height="420" Width="620">
     <Window.Resources>
         <converters:InverseAndBooleansToBooleanConverter x:Key="InverseAndBooleansToBooleanConverter"/>
@@ -33,4 +35,4 @@
             </Button.IsEnabled>
         </Button> 
     </Grid>
-</Window>
+</views:EditableDataChildWindow>

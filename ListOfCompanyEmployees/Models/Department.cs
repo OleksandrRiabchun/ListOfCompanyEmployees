@@ -37,6 +37,11 @@ namespace ListOfCompanyEmployees.Models
 
         public string Error => null;
 
+        public Department Clone() => new Department()
+        { 
+            Name = _name.Clone().ToString() 
+        };
+
         public override string ToString() => Name;
     }
 }

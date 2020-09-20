@@ -21,10 +21,10 @@ namespace ListOfCompanyEmployees.Views
 
         protected void OnClosing(object _, CancelEventArgs e)
         {
-            // If data is dirty, notify user and ask for a response
+            // Если данные грязные, уведомить пользователя и попросить ответ
             if (IsDataChanged && !WasSavedData)
             {
-                var msg = "Data was changed. Close without saving?";
+                var msg = "Данные были изменены. Закрыть без сохранения?";
                 var result =
                     MessageBox.Show(
                         msg,
@@ -33,7 +33,7 @@ namespace ListOfCompanyEmployees.Views
                         MessageBoxImage.Warning);
                 if (result == MessageBoxResult.No)
                 {
-                    // If user doesn't want to close, cancel closure
+                    // Если пользователь не хочет закрывать, отмените закрытие
                     e.Cancel = true;
                 }
             }

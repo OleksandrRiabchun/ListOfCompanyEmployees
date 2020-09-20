@@ -27,13 +27,13 @@ namespace ListOfCompanyEmployees.Views
 
         private void OnSaveClick(object sender, RoutedEventArgs e)
         {
-            // raise data validation
+            // поднять проверку данных
             employeeName.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
             employeeAge.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
             employeeSalary.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
             //employeeDep.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
 
-            // skip saving, if has any errors
+            // пропустить сохранение, если есть ошибки
             if (Validation.GetHasError(employeeName)
              || Validation.GetHasError(employeeAge)
              || Validation.GetHasError(employeeSalary)

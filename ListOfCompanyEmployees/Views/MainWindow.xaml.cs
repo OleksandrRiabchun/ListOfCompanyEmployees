@@ -32,19 +32,10 @@ namespace ListOfCompanyEmployees.Views
         private void AddNewDepartments(object sender, RoutedEventArgs e)
         {
             var newDepartment = new Department();
-            var addDepartmentForm = new AddOrEditDepartmentWindow(newDepartment);
-            addDepartmentForm.Show();
-            addDepartmentForm.Closing += (s, ea) =>
-            {
-                if (MessageBox.Show("Сохранить данные?", "Внимание", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                {
-                    _departments.Add(newDepartment);
-                }
-                else
-                {
-                    _departments.Remove(newDepartment);
-                }
-            };
+            var window = new AddOrEditDepartmentWindow(
+                newDepartment,
+                dep => _departments.Add(dep));
+            window.Show(); 
         }
 
         private void ChangeEmployee(object sender, RoutedEventArgs e)
@@ -68,32 +59,22 @@ namespace ListOfCompanyEmployees.Views
         }
 
         private void ChangeDepartment(object sender, RoutedEventArgs e)
-        {
-            var selectDepartment = lbDepartmant.SelectedItem as Department;
-            var selectedIndex = lbDepartmant.SelectedIndex;
-
-            if (selectDepartment is null)
+        { 
+            if (!(lbDepartmant.SelectedItem is Department selectedDepartment))
             {
                 MessageBox.Show("Выберите департамент");
                 return;
             }
 
-            var changeDepartment = new AddOrEditDepartmentWindow(selectDepartment);
-            changeDepartment.Show();
-            changeDepartment.Closing += (s, ea) =>
-            {
-                if (MessageBox.Show("Сохранить данные?", "Внимание", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            var window = new AddOrEditDepartmentWindow(
+                selectedDepartment.Clone(),
+                dep =>
                 {
-                    _departments.RemoveAt(selectedIndex);
-                    _departments.Add(selectDepartment);
-                }
-                else
-                {
-                    _departments.Remove(selectDepartment);
-                }
-            };
-        }
-
+                    _departments.RemoveAt(lbDepartmant.SelectedIndex);
+                    _departments.Add(dep);
+                });
+            window.Show(); 
+        } 
         #region Seed Data
 
         private void FillDepartments()

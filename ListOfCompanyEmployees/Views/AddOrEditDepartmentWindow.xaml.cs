@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
 using ListOfCompanyEmployees.Models;
 
 namespace ListOfCompanyEmployees.Views
@@ -6,27 +8,27 @@ namespace ListOfCompanyEmployees.Views
     /// <summary>
     /// Логика взаимодействия для AddedDepartment.xaml
     /// </summary>
-    public partial class AddOrEditDepartmentWindow : Window
+    public partial class AddOrEditDepartmentWindow : EditableDataChildWindow
     {
         private readonly Department _department;
-        public AddOrEditDepartmentWindow(Department prototypeDepartment)
+        private readonly Action<Department> _saveDep;
+        public AddOrEditDepartmentWindow(Department prototypeDepartment, Action<Department> saveDep) : base(prototypeDepartment)
         {
             InitializeComponent();
             _department = prototypeDepartment;
+            _saveDep = saveDep;
             DataContext = _department;
         }
 
         private void OnSaveDepartment(object sender, RoutedEventArgs e)
         {
-            if (_department.Name != null)
-            {
-                DataContext = _department;
-            }
-            else
-            {
-                MessageBox.Show("Введите департамент!!!");
+            departmentNameTextBox.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
+
+            if (Validation.GetHasError(departmentNameTextBox))
                 return;
-            }
+
+            _saveDep(_department);
+            WasSavedData = true; 
             Close();
         }
     }

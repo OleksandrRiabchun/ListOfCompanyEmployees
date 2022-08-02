@@ -16,14 +16,14 @@
         <StackPanel Grid.Column="0">
             <ListView Margin="10" Name="lbEmployee" 
                      VerticalAlignment="Top" 
-                     Height="250">
+                     Height="250" HorizontalAlignment="Center">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="№" DisplayMemberBinding="{Binding Id}"/>
-                        <GridViewColumn Header="Имя" Width="85" DisplayMemberBinding="{Binding Name}"/>
-                        <GridViewColumn Header="Возраст" Width="85" DisplayMemberBinding="{Binding Age}"/>
-                        <GridViewColumn Header="Департамент" Width="85"  DisplayMemberBinding="{Binding Department}"/>
-                        <GridViewColumn Header="Зарплата" Width="85" DisplayMemberBinding="{Binding Salary}"/>                        
+                        <GridViewColumn Header="Имя" Width="100" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Возраст" Width="50" DisplayMemberBinding="{Binding Age}"/>
+                        <GridViewColumn Header="Департамент" Width="120"  DisplayMemberBinding="{Binding Department}"/>
+                        <GridViewColumn Header="Зарплата" Width="70" DisplayMemberBinding="{Binding Salary}"/>                        
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -35,11 +35,11 @@
 
         <StackPanel Grid.Column="1">
             <ListView Margin="10" x:Name="lbDepartmant" 
-                     VerticalAlignment="Top" 
+                     VerticalAlignment="Top" HorizontalAlignment="Center" 
                      Height="250">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Имя" Width="350" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Департамент" Width="350" DisplayMemberBinding="{Binding Name}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -47,8 +47,6 @@
                     VerticalAlignment="Bottom"
                     Click="AddNewDepartments" Content="Добавить"/>
             <Button Content="Изменить" Height="25" Width="70" Click="ChangeDepartment"/>
-        </StackPanel>
-
-    </Grid>
-
+        </StackPanel> 
+    </Grid> 
 </Window>

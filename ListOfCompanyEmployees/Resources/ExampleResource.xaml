@@ -6,5 +6,5 @@
             <GradientStop Color="White" Offset="0" />
             <GradientStop Color="Blue" Offset="1" />
         </GradientStopCollection>
-    </LinearGradientBrush>
+    </LinearGradientBrush> 
 </ResourceDictionary>

@@ -4,7 +4,7 @@ using System.Globalization;
 namespace ListOfCompanyEmployees
 {
     public class Employee : INotifyPropertyChanged
-    { 
+    {
         private readonly CultureInfo _culture;
         private int _id;
         private string _name;
@@ -12,7 +12,7 @@ namespace ListOfCompanyEmployees
         private Department _department;
         private decimal _salary;
 
-        public int Id 
+        public int Id
         {
             get { return _id; }
             set
@@ -60,7 +60,7 @@ namespace ListOfCompanyEmployees
                 _salary = value;
                 NotifyPropertyChanged("Salary");
             }
-        } 
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
@@ -71,6 +71,6 @@ namespace ListOfCompanyEmployees
         public Employee(CultureInfo culture = default)
         {
             _culture = culture ?? CultureInfo.CreateSpecificCulture("uk-UA");
-        } 
+        }
     }
 }

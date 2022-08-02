@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Windows; 
-using System.Collections.ObjectModel; 
+using System.Windows;
+using System.Collections.ObjectModel;
 
 namespace ListOfCompanyEmployees
 {
@@ -9,25 +9,41 @@ namespace ListOfCompanyEmployees
     /// </summary>
     public partial class AddChangeEmployee : Window
     {
-        private readonly Employee _employee; 
+        private readonly Employee _employee;
 
         public AddChangeEmployee(Employee employee, ObservableCollection<Department> dep)
         {
-            InitializeComponent(); 
-            _employee = employee; 
+            InitializeComponent();
+            _employee = employee;
             employeeName.Text = _employee.Name;
-            employeeAge.CaretIndex = _employee.Age;
+            employeeAge.Text = Convert.ToString(_employee.Age);
+            employeeDep.SelectedItem = _employee.Department;
             employeeDep.ItemsSource = dep;
-            employeeSalary.DataContext = _employee.Salary;  
+            employeeSalary.Text = Convert.ToString(_employee.Salary);
+            _employee.NotifyPropertyChanged("Department");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        { 
-            _employee.Name = employeeName.Text; 
-            _employee.Age = Convert.ToInt32(employeeAge.Text);
+        {
+            if (employeeName.Text != "")
+                _employee.Name = employeeName.Text;
+            else
+            {
+                MessageBox.Show("Введите имя!!!");
+                return;
+            }
+
+            if(Convert.ToInt32(employeeAge.Text) >= 18 && Convert.ToInt32(employeeAge.Text) <= 90)
+                _employee.Age = Convert.ToInt32(employeeAge.Text);
+            else
+            {
+                MessageBox.Show("Не корректный возраст!!!");
+                return;
+            }
+
             _employee.Department = (Department)employeeDep.SelectedItem;
             _employee.Salary = Convert.ToInt32(employeeSalary.Text);
             Close();
-        } 
+        }
     }
 }

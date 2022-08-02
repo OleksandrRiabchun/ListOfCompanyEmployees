@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel; 
+using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace ListOfCompanyEmployees
@@ -18,11 +18,11 @@ namespace ListOfCompanyEmployees
 
         private void AddNewEmployee(object sender, RoutedEventArgs e)
         {
-            var nextId = _employees.Count + 1; 
-            var newEmployee = new Employee(); 
+            var nextId = _employees.Count + 1;
+            var newEmployee = new Employee();
             AddChangeEmployee addEmployee = new AddChangeEmployee(newEmployee, _departments);
             addEmployee.Show();
-            addEmployee.Closed += (s, ew) => _employees.Add(new Employee() { Id = nextId, Name = newEmployee.Name, Department = newEmployee.Department, Age = newEmployee.Age, Salary = newEmployee.Salary }); 
+            addEmployee.Closed += (s, ew) => _employees.Add(new Employee() { Id = nextId, Name = newEmployee.Name, Department = newEmployee.Department, Age = newEmployee.Age, Salary = newEmployee.Salary });
         }
 
         private void AddNewDepartments(object sender, RoutedEventArgs e)
@@ -52,27 +52,23 @@ namespace ListOfCompanyEmployees
             _employees.Add(new Employee { Id = 3, Name = "Kolya", Department = GetDep(), Age = 30, Salary = 8000m });
 
             lbEmployee.ItemsSource = _employees;
-        } 
+        }
 
         private void ChangeEmployee(object sender, RoutedEventArgs e)
         {
             var selectedEmployee = lbEmployee.SelectedItem as Employee;
-            var selectedIndex = lbEmployee.SelectedIndex;
             if (selectedEmployee is null)
             {
                 MessageBox.Show("Выберите сотрудника");
                 return;
             }
-            AddChangeEmployee changeEmoloyee = new AddChangeEmployee(selectedEmployee, _departments);
-            changeEmoloyee.Show();
-            changeEmoloyee.Closed += (s, ea) => _employees.RemoveAt(selectedIndex);
-            changeEmoloyee.Closed += (s, ea) => _employees.Add(selectedEmployee);
+            AddChangeEmployee changeEmployee = new AddChangeEmployee(selectedEmployee, _departments);
+            changeEmployee.Show();
         }
 
-        private void ChangeDepartment(object sender, RoutedEventArgs e) 
+        private void ChangeDepartment(object sender, RoutedEventArgs e)
         {
             var selectDepartment = lbDepartmant.SelectedItem as Department;
-            var selectedIndex = lbDepartmant.SelectedIndex;
             if (selectDepartment is null)
             {
                 MessageBox.Show("Выберите департамент");
@@ -80,8 +76,16 @@ namespace ListOfCompanyEmployees
             }
             AddDepartmentForm changeDepartment = new AddDepartmentForm(selectDepartment);
             changeDepartment.Show();
-            changeDepartment.Closed += (s, ea) => _departments.RemoveAt(selectedIndex);
-            changeDepartment.Closed += (s, ea) => _departments.Add(selectDepartment);
-        } 
+            changeDepartment.Closed += ChangeDepartment_Closed;
+        }
+
+        private void ChangeDepartment_Closed(object sender, EventArgs e)
+        {
+            for (int i = 0; i < _employees.Count; i++)
+            {
+                var selectedEmployee = _employees[i];
+                _ = new AddChangeEmployee(selectedEmployee, _departments);
+            }
+        }
     }
 }

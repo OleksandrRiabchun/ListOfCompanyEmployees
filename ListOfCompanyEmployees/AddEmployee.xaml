@@ -21,7 +21,6 @@
         <ComboBox x:Name="employeeDep" Height="30" Width="350" Margin="246,308,246,232">
         </ComboBox>
         <Button Content="_OK" Height="30" Width="50"
-         Click="Button_Click" RenderTransformOrigin="0.55,1.488" Margin="350,415,342,25"/>
-
+         Click="Button_Click" RenderTransformOrigin="0.55,1.488" Margin="350,415,342,25"/> 
     </Grid>
-</Window>
+</Window> 

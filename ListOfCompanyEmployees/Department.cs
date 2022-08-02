@@ -7,11 +7,11 @@ namespace ListOfCompanyEmployees
         private string _name;
         public string Name
         {
-            get { return _name; } 
+            get { return _name; }
             set
             {
                 _name = value;
-                NotifyPropertyChanged("Name"); 
+                NotifyPropertyChanged("Name");
             }
         }
 
@@ -19,7 +19,7 @@ namespace ListOfCompanyEmployees
         public void NotifyPropertyChanged(string propName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
-        } 
+        }
 
         public override string ToString() => Name;
     }
